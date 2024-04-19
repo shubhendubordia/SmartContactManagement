@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user_base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Add Contact Page</title>
+</head>
+<body>
+	<section>
+
+		<div class="viewContactBackground card">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Your contacts</h1>
+
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">#Id</th>
+							<th scope="col">FirstName</th>
+							<th scope="col">LastName</th>
+							<th scope="col">PhoneNumber</th>
+							<th scope="col">email</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c : ${contacts}">
+							<th scope="row">1</th>
+							<td><img class="my_profile_picture" alt="profile photo"
+								src="" th:src="@{'/img/'+${c.image}}" /> <span
+								th:text="${c.name}"></span></td>
+
+
+							<td th:text="${c.secondName}">Otto</td>
+							<td th:text="${c.phone}"></td>
+
+
+
+							<td><a href="#" th:href="@{'/user/'+${c.cId}+'/contact'}">
+
+									<span th:text="${c.email}"></span>
+
+
+							</a></td>
+
+
+							<td>
+
+								<a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger btn-sm">Delete</a>
+								<button class="btn btn-danger btn-sm">Update</button>
+
+
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+
+				<!-- paggination in view contact -->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li th:if="${currentPage-1 != -1}" class="page-item"><a
+							class="page-link" href="#"
+							th:href="@{'/user/viewContact/'+${currentPage-1}}">Previous</a></li>
+
+						<li th:classappend="${currentPage==i-1?'active':''}"
+							th:each="i : ${#numbers.sequence(1,totalPages)}"
+							class="page-item"><a class="page-link" href="#"
+							th:href="@{'/user/viewContact/'+${i-1}}"><span th:text="${i}"></span></a></li>
+
+						<li th:if="${currentPage+1 != totalPages}" class="page-item"><a
+							class="page-link" href="#"
+							th:href="@{'/user/viewContact/'+${currentPage+1}}">Next</a></li>
+					</ul>
+				</nav>
+
+
+			</div>
+
+
+
+		</div>
+
+
+
+	</section>
+
+</body>
+</html>

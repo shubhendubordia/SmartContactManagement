@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user_base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Add Contact Page</title>
+</head>
+<body>
+	<section class="AddContactBackground">
+
+
+
+		<div class="container mt-0">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card mt-1">
+						<div th:if="${session.message}"
+							th:classappends="${session.message.type}"
+							class="alert alert-success" role="alert">
+							<p th:text="${session.message.content}"></p>
+							<th:block th:text="${@messageRemover.removeMessageFromSession()}"></th:block>
+						</div>
+
+
+
+
+					</div>
+					<div class="container text-center">
+						<img class="mx-auto" style="width: 80px" src=""
+							th:src="@{/img/logoAddContact.jpg}" alt="image" />
+
+					</div>
+					<h2 class="text-center ">Add Contact</h2>
+
+
+
+
+					<form action="#" th:object="${contact}"
+						enctype="multipart/form-data" method="POST"
+						th:action="@{/user/process-contact}">
+
+
+
+						<div class="form-group">
+							<i class="fa-solid fa-person"></i> <label for="name_field"
+								class="form-label">First Name </label><input name="name"
+								type="text" class="form-control" id="name"
+								aria-describedby="name" placeholder="Enter here" required />
+						</div>
+						<div class="form-group">
+							<i class="fa-solid fa-person"></i> <label for="name_field"
+								class="form-label">Second Name </label> <input name="secondName"
+								type="text" class="form-control" id="secondName"
+								aria-describedby="name" placeholder="Enter here" required />
+						</div>
+						<div class="form-group">
+							<i class="fa-solid fa-briefcase"></i> <label for="name_field"
+								class="form-label">work </label> <input name="work" type="text"
+								class="form-control" id="work" aria-describedby="name"
+								placeholder="Enter here" required />
+						</div>
+						<div class="form-group">
+							<i class="fa-solid fa-envelope"></i> <label for="email_field"
+								class="form-label"> Email </label> <input name="email"
+								type="email" class="form-control" id="email"
+								aria-describedby="name" placeholder="Enter here" required />
+						</div>
+
+
+						<div class="form-group">
+							<i class="fa-solid fa-phone"></i> <label for="password_field"
+								class="form-label">Your phone no. </label> <input name="phone"
+								type="number" class="form-control" id="password_field"
+								aria-describedby="name" placeholder="Enter here" required />
+						</div>
+
+						<div class="form-group">
+							<label>Description</label>
+							<textarea name="description" placeholder="enter something about "
+								class="form-control" rows="5"></textarea>
+						</div>
+						<!-- Contact Image -->
+
+						<div class="custom-file">
+							<i class="fa-regular fa-id-badge"></i> <label>Add Profile
+								Image</label> <br> <input type="file" name="profileImage" />
+
+						</div>
+
+
+						<!-- terms and agreement -->
+
+						<div class="form-group form-check">
+							<i class="fa-solid fa-handshake"></i> <input type="checkbox"
+								name="agreement" class="form-check-input" id="agreement">
+							<label class="form-check-label" for="agreement">Terms and
+								Agreement</label>
+						</div>
+
+
+						<div class="container text-center">
+							<button type="submit" class="btn bg-primary btn-block">Save
+								Contact</button>
+							<button type="reset"
+								class="btn bg-primary align-item-center btn-block">Reset</button>
+						</div>
+
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+
+	</section>
+
+</body>
+</html>
